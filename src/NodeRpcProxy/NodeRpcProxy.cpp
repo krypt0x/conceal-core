@@ -151,7 +151,8 @@ void NodeRpcProxy::workerThread(const INode::Callback& initialized_callback) {
     contextGroup.wait();
     // Make sure all remote spawns are executed
     m_dispatcher->yield();
-  } catch (std::exception&) {
+  } catch (std::exception& ex) {
+    log << "Exception while saving the document: " << ex.what();
   }
 
   m_dispatcher = nullptr;
