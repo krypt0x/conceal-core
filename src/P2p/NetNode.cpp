@@ -286,8 +286,9 @@ namespace CryptoNote
           CryptoNote::serialize(*this, a);
           loaded = true;
         }
-      } catch (std::exception&) {
-      }
+      } catch (std::exception& ex) {
+        log << "Exception while saving the document: " << ex.what();
+        }
 
       if (!loaded) {
         make_default_config();
