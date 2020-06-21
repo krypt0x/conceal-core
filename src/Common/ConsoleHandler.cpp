@@ -256,9 +256,9 @@ void ConsoleHandler::handlerThread() {
         handleCommand(line);
       }
 
-    } catch (std::exception&) {
-      // ignore errors
-    }
+    } catch (const std::exception& ex) {
+    log << "Exception while saving the document: " << ex.what();
+  }
   }
 }
 
