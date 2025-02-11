@@ -10,7 +10,7 @@ jobs:
     name: Windows
     runs-on: windows-2022
     env:
-      BOOST_ROOT: C:/local/boost_1_83_0
+      BOOST_ROOT: C:\local\boost_1_83_0
     steps:
       - uses: actions/checkout@master
 
