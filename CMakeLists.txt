@@ -4,7 +4,7 @@ include(CheckCXXCompilerFlag)
 set(VERSION "6.7.5")
 set(VERSION_BUILD_NO "3301")
 # Packaged from main commits
-set(COMMIT 1db6e66)
+set(COMMIT 7f2b273)
 set(REFS " (HEAD -> master)")
 
 set(CMAKE_CXX_STANDARD 11)
@@ -29,10 +29,7 @@ endif()
 
 if(MSVC OR MINGW)
   include_directories(src/Platform/Windows)
-  if(POLICY CMP0167)
-    cmake_policy(SET CMP0167 OLD)  # Use OLD behavior for compatibility
-  endif()
-elseif(APPLE)
+  elseif(APPLE)
   include_directories(src/Platform/OSX)
 else()
 	include_directories(src/Platform/Linux)
