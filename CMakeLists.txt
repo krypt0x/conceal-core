@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 
 include(CheckCXXCompilerFlag)
-set(VERSION "6.7.3")
-set(VERSION_BUILD_NO "Trebopala")
+set(VERSION "6.7.5")
+set(VERSION_BUILD_NO "3301")
 # Packaged from main commits
 set(COMMIT 1db6e66)
 set(REFS " (HEAD -> master)")
@@ -15,7 +15,7 @@ set(CMAKE_CONFIGURATION_TYPES Debug RelWithDebInfo Release CACHE STRING INTERNAL
 set(CMAKE_SKIP_PACKAGE_ALL_DEPENDENCY ON)
 set(CMAKE_SUPPRESS_REGENERATION ON)
 
-project(concealX)
+project(Conceal)
 
 include_directories(include src external "${CMAKE_BINARY_DIR}/version")
 
@@ -151,7 +151,7 @@ if(STATIC)
 endif()
 
 #set(Boost_DEBUG on)
-find_package(Boost 1.55 REQUIRED COMPONENTS system filesystem thread date_time chrono regex serialization program_options)
+find_package(Boost 1.70.0 REQUIRED COMPONENTS system filesystem thread date_time chrono regex serialization program_options)
 include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
 if(MINGW)
