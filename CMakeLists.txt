@@ -15,7 +15,7 @@ set(CMAKE_CONFIGURATION_TYPES Debug RelWithDebInfo Release CACHE STRING INTERNAL
 set(CMAKE_SKIP_PACKAGE_ALL_DEPENDENCY ON)
 set(CMAKE_SUPPRESS_REGENERATION ON)
 
-project(Conceal-Core)
+project(concealX)
 
 include_directories(include src external "${CMAKE_BINARY_DIR}/version")
 
@@ -115,7 +115,7 @@ else()
   endif()
   if(MINGW)
     set(WARNINGS "${WARNINGS} -Wno-error=unused-value")
-    set(MINGW_FLAG "-DWIN32_LEAN_AND_MEAN")
+    set(MINGW_FLAG "-DWIN32_LEAN_AND_MEAN -DCMAKE_POLICY_DEFAULT_CMP0167=OLD")
     include_directories(SYSTEM src/platform/mingw)
   else()
     set(MINGW_FLAG "")
