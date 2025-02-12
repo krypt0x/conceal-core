@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.30)
 
 include(CheckCXXCompilerFlag)
 set(VERSION "6.7.5")
@@ -32,12 +32,12 @@ if(MSVC OR MINGW)
   if(POLICY CMP0167)
     cmake_policy(SET CMP0167 NEW)
   endif()
-  elseif(APPLE)
-    include_directories(src/Platform/OSX)
+elseif(APPLE)
+  include_directories(src/Platform/OSX)
 else()
-    include_directories(src/Platform/Linux)
-    include(TestCXXAcceptsFlag)
-    include(CheckCCompilerFlag)
+  include_directories(src/Platform/Linux)
+  include(TestCXXAcceptsFlag)
+  include(CheckCCompilerFlag)
   if (NOT ARCH)
     set(ARCH native CACHE STRING "CPU to build for: -march value or 'default' to not pass -march at all")
   endif()
@@ -60,7 +60,7 @@ else()
         set(ARCH_FLAG "-march=x86-64")
       endif()
     endif()
-	endif()
+  endif()
 endif()
 
 include(arm.cmake)
@@ -69,15 +69,13 @@ include(arm.cmake)
 option(NO_AES "Explicitly disable AES support" ${NO_AES})
 
 if(NO_AES) # No AES
-	message(STATUS "AES support explicitly disabled")
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNO_AES")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNO_AES")
-
+  message(STATUS "AES support explicitly disabled")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNO_AES")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNO_AES")
 elseif(NOT ARM AND NOT MSVC) # x86/64
-	message(STATUS "AES support enabled")
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -maes")
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -maes")
-
+  message(STATUS "AES support enabled")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -maes")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -maes")
 endif()
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${ARCH_FLAG}")
@@ -104,7 +102,7 @@ else()
     # This option has no effect in glibc version less than 2.20.
     # Since glibc 2.20 _BSD_SOURCE is deprecated, this macro is recomended instead
     add_definitions("-D_DEFAULT_SOURCE -D_GNU_SOURCE")
-	endif()
+  endif()
 
   set(WARNINGS "-Wall -Wextra -Wpointer-arith -Wundef -Wvla -Wwrite-strings -Wno-error=extra -Wno-error=unused-function -Wno-error=deprecated-declarations -Wno-error=sign-compare -Wno-error=strict-aliasing -Wno-error=type-limits -Wno-unused-parameter -Wno-error=unused-variable -Wno-error=undef -Wno-error=uninitialized -Wno-error=unused-result")
   if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
@@ -140,11 +138,10 @@ else()
     set(DEBUG_FLAGS "-g3 -O0")
   endif()
   set(RELEASE_FLAGS "-g3 -O0")
-
 endif()
 
 if(APPLE)
-	add_definitions(/DHAVE_ROTR)
+  add_definitions(/DHAVE_ROTR)
 endif()
 
 if(STATIC)
