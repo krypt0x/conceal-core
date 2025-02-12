@@ -15,20 +15,23 @@ set(CMAKE_CONFIGURATION_TYPES Debug RelWithDebInfo Release CACHE STRING INTERNAL
 set(CMAKE_SKIP_PACKAGE_ALL_DEPENDENCY ON)
 set(CMAKE_SUPPRESS_REGENERATION ON)
 
-project(Conceal)
+project(Conceal-Core)
 
 include_directories(include src external "${CMAKE_BINARY_DIR}/version")
 
 if(APPLE OR FREEBSD)
   include_directories(SYSTEM /usr/include/malloc)
   if(POLICY CMP0042)
-    cmake_policy(SET CMP0042 NEW)
+    cmake_policy(SET CMP0042 NEW) # Use NEW behavior for compatibility
   endif()
   enable_language(ASM)
 endif()
 
 if(MSVC OR MINGW)
   include_directories(src/Platform/Windows)
+  if(POLICY CMP0167)
+    cmake_policy(SET CMP0167 OLD)  # Use OLD behavior for compatibility
+endif()
 elseif(APPLE)
   include_directories(src/Platform/OSX)
 else()
