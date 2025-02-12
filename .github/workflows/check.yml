@@ -129,7 +129,7 @@ jobs:
           ls
           mkdir build
           cd build
-          cmake .. -DCMAKE_POLICY_DEFAULT_CMP0167=OLD -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DSTATIC=ON
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=ON -DSTATIC=ON
           cmake --build . --config Release
 
       - name: Prepare release
