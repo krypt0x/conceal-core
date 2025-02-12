@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.10)
 
 include(CheckCXXCompilerFlag)
 set(VERSION "6.7.5")
@@ -30,7 +30,7 @@ endif()
 if(MSVC OR MINGW)
   include_directories(src/Platform/Windows)
   if(POLICY CMP0167)
-    cmake_policy(SET CMP0167 NEW)
+    cmake_policy(SET CMP0167 OLD) # Use OLD behavior for compatibility
   endif()
 elseif(APPLE)
   include_directories(src/Platform/OSX)
